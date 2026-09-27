@@ -1,0 +1,63 @@
+================================================================
+ linux-hardening-audit
+ Host   : web-01
+ Date   : Mon Sep 23 14:09:45 UTC 2024
+ OS     : Debian GNU/Linux 12 (bookworm)
+ Kernel : 6.1.0-25-amd64
+================================================================
+
+--- SSH ---
+[PASS] [SSH-01] PermitRootLogin is no or prohibit-password
+[PASS] [SSH-02] PasswordAuthentication no
+[PASS] [SSH-03] MaxAuthTries <= 3
+[PASS] [SSH-04] LoginGraceTime <= 60
+[PASS] [SSH-05] X11Forwarding no
+[WARN] [SSH-06] AllowUsers or AllowGroups defined
+[PASS] [SSH-07] Protocol version 1 not forced
+
+--- Firewall ---
+[PASS] [FW-01] ufw active
+[PASS] [FW-02] iptables INPUT chain has explicit rules
+
+--- File Permissions ---
+[PASS] [PERM-01] /etc/passwd is 644
+[PASS] [PERM-02] /etc/shadow is 640 or stricter
+[PASS] [PERM-03] /etc/sudoers is 440
+[PASS] [PERM-04] /etc/ssh/sshd_config is 600
+[WARN] [PERM-05] No world-writable files in /etc
+[WARN] [PERM-06] No SUID files outside standard paths
+
+--- Password Policy ---
+[PASS] [PASS-01] PASS_MAX_DAYS <= 90
+[PASS] [PASS-02] PASS_MIN_DAYS >= 1
+[PASS] [PASS-03] PASS_WARN_AGE >= 7
+
+--- Sysctl / Kernel ---
+[PASS] [SYSCTL-01] IPv4 forwarding disabled
+[PASS] [SYSCTL-02] ICMP redirects not accepted (all)
+[PASS] [SYSCTL-03] Source routing disabled
+[PASS] [SYSCTL-04] SYN flood protection on
+[PASS] [SYSCTL-05] Martian packets logged
+[PASS] [SYSCTL-06] ASLR fully enabled (= 2)
+[PASS] [SYSCTL-07] Broadcast ICMP disabled
+
+--- Unnecessary Services ---
+[PASS] [SVC-telnet] Service 'telnet' not running
+[PASS] [SVC-rsh] Service 'rsh' not running
+[PASS] [SVC-rlogin] Service 'rlogin' not running
+[PASS] [SVC-talk] Service 'talk' not running
+[PASS] [SVC-chargen] Service 'chargen' not running
+
+--- Users ---
+[PASS] [USR-01] No accounts with empty passwords
+[PASS] [USR-02] Only root has UID 0
+[WARN] [USR-03] No NOPASSWD in /etc/sudoers for UID >= 1000
+
+================================================================
+ Summary
+ Total  : 28
+ PASS   : 25
+ FAIL   : 0
+ WARN   : 3
+ Score  : 25 / 28  (89%)
+================================================================
