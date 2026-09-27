@@ -37,7 +37,7 @@ Full output: [`reports/before-sample.txt`](reports/before-sample.txt) · [`repor
 ## Quick start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/linux-hardening-audit
+git clone https://github.com/grainframe/linux-hardening-audit
 cd linux-hardening-audit
 chmod +x audit.sh harden.sh rollback.sh
 
